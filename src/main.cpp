@@ -6,22 +6,15 @@
 
 #include <stdlib.h>
 
-#include "includes/keyEvents.h"
-#include "includes/logger.h"
 #include "includes/FileSys.h"
 #include "includes/App.h"
-
+#include "includes/core.h"
 
 
 int32_t global_frames[4080 * 2] = {0};
 size_t global_frames_count = 0;
 
-void music_infos(AudioStream stream)
-{
-  printf("sample rate: %u\n", stream.sampleRate);
-  printf("sample size: %u\n", stream.sampleSize);
-  printf("channels: %u\n", stream.channels);
-}
+
 
 void callback(void *bufferData, unsigned int frames)
 {
@@ -40,23 +33,14 @@ int main(int argc, const char **argv)
   // Initialization
   const char *audio_name = argv[1];
 
-  App app = App(audio_name);
+  FileSys fs = FileSys();
+  char *sound_path = fs.get_audio_file(audio_name);
 
-  app.configAudio();
-  app.configScreen();
+  App app = App();
 
+  app.config();
 
-  // this callback receives the current buffer of the stream
-  // AttachAudioStreamProcessor(music.stream, callback);
-
-  // while (!WindowShouldClose())
-  // {
-  //   UpdateMusicStream(music);
-  //   keyEvents(music);
-  //   screen(global_frames_count, global_frames);
-  // }
-
-  app.run();
+  app.run(sound_path);
 
   return 0;
 }

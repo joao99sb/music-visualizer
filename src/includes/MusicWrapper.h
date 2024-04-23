@@ -1,16 +1,24 @@
+#pragma once
 #include <raylib.h>
-#include "./core.h"
+#include <cstddef>
+#include <cstring>
+#include <iostream>
+#include "./utils/utils.h"
+
 class MusicWrapper
 {
 
 public:
-  MusicWrapper(Music music);
+  MusicWrapper();
 
-  usize getChannels();
   void playMusic();
+
+  void setMusic(const char *sound_path);
   void setMusicVolume(float vol);
   void pauseMusic();
+  bool isMusicPlaying();
   void update();
+  void config();
 
 private:
   Music music;

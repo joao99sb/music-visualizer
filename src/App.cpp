@@ -1,64 +1,60 @@
 #include "includes/App.h"
-
-App::App(const char *file_path)
+App::App()
 {
 
-  this->FsService = new FileSys();
-  char *sound_path = this->FsService->get_audio_file(file_path);
-
-  this->mw = new MusicWrapper(LoadMusicStream(sound_path));
+  this->mw = new MusicWrapper();
   this->window = new Window();
+  this->ke = new KeyEvents();
 
   this->global_frames[4080 * 2] = {0};
   this->global_frames_count = 0;
-  // LoadMusicStream(sound_path);
 }
 
-void App::configAudio()
+void App::config()
 {
   SetTraceLogLevel(LOG_ERROR);
-  InitAudioDevice();
-  assert(this->mw->getChannels() == 2);
-}
-void App::configScreen()
-{
-  InitWindow(800, 600, "Musica");
-  SetTargetFPS(60);
+  this->mw->config();
+  this->window->config("Music vizualizer");
 }
 
-void App::run()
+void App::run(const char *sound_path)
 {
+  this->mw->setMusic(sound_path);
 
-  mw->playMusic();
-  mw->setMusicVolume(0.9f);
+  this->mw->playMusic();
 
-  while (!this->window->closeWindow())
+  while (!WindowShouldClose())
   {
-
     this->mw->update();
-    // this->handleKeyEvents();
-    // transfer this logic to App and window will be agnostic about the program behavior
-    this->window->draw(global_frames_count, global_frames);
+    this->events();
+    BeginDrawing();
+    EndDrawing();
+    // this->window->draw(this->global_frames_count, this->global_frames);
   }
 }
 
-// void App::handleKeyEvents()
-// {
+void App::events()
+{
 
-//   if (IsKeyPressed(KEY_SPACE))
-//   {
-//     if (IsMusicStreamPlaying(music))
-//     {
-//       PauseMusicStream(music);
-//     }
-//     else
-//     {
-//       ResumeMusicStream(music);
-//     }
-//   }
-
-//   if (IsKeyPressed(KEY_ESCAPE))
-//   {
-//     CloseWindow();
-//   }
-// }
+  KeyCodeEnum mec = this->ke->musicEvents();
+  switch (mec)
+  {
+  case CLOSE_WINDOW:
+    printf("ola mundo");
+    break;
+  case SWITCH_STATE:
+    if (this->mw->isMusicPlaying())
+    {
+      this->mw->pauseMusic();
+    }
+    else
+    {
+      this->mw->playMusic();
+    }
+    break;
+  case CONTINUE:
+    break;
+  default:
+    break;
+  }
+}
