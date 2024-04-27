@@ -6,7 +6,6 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <optional>
-#define LEN 31
 
 namespace hashTable
 {
@@ -29,9 +28,9 @@ namespace hashTable
   template <typename T>
   List<T> *createList(int cappacity)
   {
-    List<T> *list = (List<T> *)malloc(sizeof(List<T> *) * LEN);
+    List<T> *list = (List<T> *)malloc(sizeof(List<T> *) * cappacity);
 
-    list->data = (Node<T> **)malloc(sizeof(Node<T> *) * LEN);
+    list->data = (Node<T> **)malloc(sizeof(Node<T> *) * cappacity);
     list->len = cappacity;
     list->count = 0;
 
@@ -85,7 +84,6 @@ namespace hashTable
 
     if (l->data[id] == NULL)
     {
-      // result
       return std::nullopt;
     }
     Node<T> *node = l->data[id];

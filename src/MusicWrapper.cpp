@@ -7,11 +7,10 @@ void MusicWrapper::config()
 {
   InitAudioDevice();
 };
-// usize MusicWrapper::getChannels()
-// {
+int MusicWrapper::getChannels() {
 
-//   return (this->music).stream.channels;
-// };
+  return this -> music.stream.channels;
+};
 
 void MusicWrapper::setMusic(const char *sound_path)
 {
@@ -40,6 +39,10 @@ void MusicWrapper::update()
 bool MusicWrapper::isMusicPlaying()
 {
   return IsMusicStreamPlaying(this->music);
+}
+void MusicWrapper::attachAudioProcessor(AudioCallback processor)
+{
+  AttachAudioStreamProcessor(this->music.stream, processor);
 }
 // void music_infos(AudioStream stream)
 // {

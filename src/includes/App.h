@@ -6,6 +6,8 @@
 #include "./MusicWrapper.h"
 #include "./Window.h"
 #include "./KeyEvents.h"
+#include "./utils/utils.h"
+
 class App
 {
 public:
@@ -16,9 +18,6 @@ private:
   Window *window;
   MusicWrapper *mw;
   KeyEvents *ke;
-
-  int32_t global_frames[4080 * 2];
-  size_t global_frames_count = 0;
 
 public:
   void config();

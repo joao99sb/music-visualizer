@@ -19,6 +19,8 @@ public:
   bool isMusicPlaying();
   void update();
   void config();
+  void attachAudioProcessor(AudioCallback processor);
+  int getChannels();
 
 private:
   Music music;

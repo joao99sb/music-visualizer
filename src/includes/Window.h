@@ -2,8 +2,7 @@
 #include <raylib.h>
 #include <cstdint>
 #include <unistd.h>
-
-// void screen(size_t global_frames_count, int32_t *global_frames);
+#include "./utils/utils.h"
 
 class Window
 {
@@ -11,5 +10,5 @@ public:
   bool closeWindow();
   void config(const char *title);
 
-  void draw(size_t frames_count, int32_t *frames_buffer);
+  void draw(size_t frames_count, Frame *frames_buffer);
 };

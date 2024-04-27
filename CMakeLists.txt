@@ -17,7 +17,7 @@ set(BUILD_EXAMPLES OFF CACHE INTERNAL "")
 FetchContent_MakeAvailable(raylib)
 
 # Configuração do diretório de build
-set(BUILD_DIR ${CMAKE_BINARY_DIR}/build)
+set(BUILD_DIR ${CMAKE_BINARY_DIR})
 
 if(NOT EXISTS ${BUILD_DIR})
     file(MAKE_DIRECTORY ${BUILD_DIR})

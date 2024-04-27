@@ -25,26 +25,16 @@ KeyCodeEnum KeyEvents::musicEvents()
 {
   if (IsKeyPressed(KEY_SPACE))
   {
-    // if (IsMusicStreamPlaying(music))
-    // {
-    //   PauseMusicStream(music);
-    // }
-    // else
-    // {
-    //   ResumeMusicStream(music);
-    // }
+
     KeyCodeEnum result = this->getLookupValue("switch state");
-
     return result;
   }
 
-  if (IsKeyPressed(KEY_ESCAPE))
-  {
-
-    KeyCodeEnum result = this->getLookupValue("close window");
-
-    return result;
-  }
+  // if (IsKeyPressed(KEY_ESCAPE))
+  // {
+  //   KeyCodeEnum result = this->getLookupValue("close window");
+  //   return result;
+  // }
   KeyCodeEnum result = this->getLookupValue("continue");
   return result;
 }
