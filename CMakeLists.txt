@@ -23,7 +23,9 @@ if(NOT EXISTS ${BUILD_DIR})
     file(MAKE_DIRECTORY ${BUILD_DIR})
 endif()
 
-file(GLOB SRC src/*.cpp )
+file(GLOB SRC  src/*.c src/utils/*.c )
+# Adicionando o diretório de includes
+include_directories(${PROJECT_SOURCE_DIR}/src/includes)
 
 # Adicionando o target principal
 add_executable(${PROJECT_NAME} ${SRC})
@@ -39,7 +41,7 @@ target_link_libraries(${PROJECT_NAME}_debug raylib)
 
 # Adicionando flags de depuração ao target de depuração
 if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
-    target_compile_options(${PROJECT_NAME}_debug PRIVATE -g -O0)
+    target_compile_options(${PROJECT_NAME}_debug PRIVATE -ggdb -O0)
 endif()
 
 # Configurando o diretório de saída para o target de depuração

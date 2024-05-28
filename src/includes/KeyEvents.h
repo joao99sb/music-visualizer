@@ -1,20 +1,12 @@
 #pragma once
 #include <raylib.h>
-#include "./utils/hashTable.h"
-#include "./utils/utils.h"
+#include "./hashTable.h"
+#include "./utils.h"
 
-enum KeyCodeEnum
-{
-  CONTINUE,
-  CLOSE_WINDOW,
-  SWITCH_STATE
-};
+#define ME_CONTINUE 1
+#define ME_SWITCH_STATE 2
 
-class KeyEvents
-{
-public:
-  KeyEvents();
-  KeyCodeEnum musicEvents();
-  hashTable::List<KeyCodeEnum> *message_lookup;
-  KeyCodeEnum getLookupValue(const char *key);
-};
+List *createLookup();
+int musicEvents(List *message_lookup);
+void configLookup(List *message_lookup);
+int getLookupValue(List *message_lookup, char key[]);

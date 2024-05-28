@@ -1,14 +1,10 @@
 #pragma once
 #include <raylib.h>
-#include <cstdint>
 #include <unistd.h>
-#include "./utils/utils.h"
+#include <complex.h>
+#include "./utils.h"
 
-class Window
-{
-public:
-  bool closeWindow();
-  void config(const char *title);
+bool closeWindow();
+void configWindow(const char *title);
 
-  void draw(size_t frames_count, Frame *frames_buffer);
-};
+void drawWindow(size_t frames_count, Frame *frames_buffer, float complex out[], float max_amp);

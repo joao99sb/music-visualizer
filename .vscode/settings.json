@@ -76,6 +76,21 @@
     "stdfloat": "cpp",
     "thread": "cpp",
     "cinttypes": "cpp",
-    "*.rh": "cpp"
+    "*.rh": "cpp",
+    "complex": "cpp",
+    "fft.h": "c",
+    "complex.h": "c",
+    "cassert": "cpp",
+    "utils.h": "c",
+    "musicwrapper.h": "c",
+    "app.h": "c",
+    "buffehandler.h": "c",
+    "core.h": "c",
+    "raylib.h": "c",
+    "hashtable.h": "c",
+    "keyevents.h": "c",
+    "stdio.h": "c",
+    "math.h": "c",
+    "assert.h": "c"
   }
 }

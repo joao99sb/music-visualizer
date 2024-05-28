@@ -1,26 +1,10 @@
 #pragma once
 #include <raylib.h>
 #include <assert.h>
+#include "./hashTable.h"
 
-#include "./FileSys.h"
-#include "./MusicWrapper.h"
-#include "./Window.h"
-#include "./KeyEvents.h"
-#include "./utils/utils.h"
+#define N 256
 
-class App
-{
-public:
-  App();
-
-private:
-  FileSys *FsService;
-  Window *window;
-  MusicWrapper *mw;
-  KeyEvents *ke;
-
-public:
-  void config();
-  void events();
-  void run(const char *sound_path);
-};
+void configApp();
+void eventsHandler(List* music_lookup);
+void runApp(const char *sound_path);

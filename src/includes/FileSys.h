@@ -4,11 +4,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-class FileSys
-{
+char *get_audio_file(const char *audio_name);
 
-public:
-  char *get_audio_file(const char *audio_name);
-
-  char *resolve_path(const char *path);
-};
+char *resolve_path(const char *path);
